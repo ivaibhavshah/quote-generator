@@ -28,7 +28,7 @@ let apiQuotes = [];
 function newQuote() {
     loading();
     const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)]
-    console.log(quote);
+    // console.log(quote);
     quoteText.textContent = quote.text;
     if(!quote.author){
         authorText.textContent = "Unknown";
@@ -59,10 +59,15 @@ async function getQuotes() {
     } 
 }
 
-// Whatsapp button
+//Twitter Function
+function tweet() {
+    const tweetUrl = `https://twitter.com/intent/tweet?text=${quoteText.innerText} - ${authorText.textContent}`; 
+    window.open(tweetUrl,'_blank');    
+}
+
 // Event Listener
 newQuoteBtn.addEventListener('click', newQuote);
-
+twitterBtn.addEventListener('click', tweet);
 // Onload
 getQuotes();
 
